@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> 
+            Welcome
+        </title>
+        <script>
+	        function addItem()
+	        {
+		        var it=document.getElementById("tb").value;
+		        var x=document.createElement("div");
+		        x.innerHTML=it;
+                x.onclick=removeItem;
+		        document.getElementById("y").appendChild(x);
+                saveList();
+	        }
+
+            function removeItem(item)
+            {
+                document.getElementById("y").removeChild(this);
+                saveList();
+            }
+
+            function saveList()
+            {
+                localStorage.storage=document.getElementById("y").innerHTML;
+            }
+
+            function loadList()
+            {
+                document.getElementById("y").innerHTML=localStorage.storage;
+                for(var i=0;i<y.children.length;i++)
+                {
+                    y.children[i].onclick=removeItem;
+                }
+            }
+
+        </script>
+    </head>
+    <body>
+        <p> Grocery List</p>
+        <input type="text" id="tb" />
+        <br/>
+        <input type="button" value="Add Item" onclick="addItem();"/>
+        <br/>
+        <div id="y"></div>
+        <script>
+            if(localStorage.storage)
+                loadList();
+        </script>
+    </body>
+</html>

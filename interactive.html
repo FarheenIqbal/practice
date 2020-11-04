@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> 
+            Welcome
+        </title>
+    </head>
+    <body>
+       <h1> Interactive Programming</h1>
+
+       <script src="http://code.jquery.com/jquery-2.1.0.js">
+       </script>
+
+       <script>
+        
+           var i=0;
+           function moveHeading()
+           {
+               $("h1").offset({top:i,left:i});
+               i++;
+                 if(i>400)
+                    i=0;
+           }       
+            setInterval(moveHeading,15);
+           
+           
+           
+           
+         </script>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> 
+            Welcome
+        </title>
+    </head>
+    <script src="http://code.jquery.com/jquery-2.1.0.js">
+    </script>
+    <body>
+       <h1> Practicing Canvass</h1>
+
+        <canvas id="c" width=500 height=500></canvas>
+
+
+
+       <script>
+        
+        var cn=document.getElementById("c");
+        var ctx=cn.getContext("2d");
+        ctx.lineWidth=5;
+
+        function circle(x,y,rad)
+        {
+            ctx.beginPath();
+            ctx.arc(x,y,rad,0,Math.PI*2,false);
+            ctx.stroke();
+        }
+        
+//nested cicles of different colors using functions
+        ctx.strokeStyle="Green";
+        circle(100,100,10);
+        ctx.strokeStyle="Red";
+        circle(100,100,20);
+        ctx.strokeStyle="Orange";
+        circle(100,100,30);
+        ctx.strokeStyle="Brown";
+        circle(100,100,40);
+        ctx.strokeStyle="Black";
+        circle(100,100,50);
+        ctx.strokeStyle="Blue";
+        circle(100,100,60);
+
+  </script>
+    </body>
+</html>

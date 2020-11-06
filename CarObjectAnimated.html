@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> 
+            Welcome
+        </title>
+    </head>
+    <body>
+       <script src="http://code.jquery.com/jquery-2.1.0.js">
+       </script>
+
+       <script>
+          
+          
+            function Car(x,y,url)
+             {
+             this.x=x;
+             this.y=y;
+             this.imgUrl=url;
+             this.draw();
+            }
+
+            
+            Car.prototype.draw = function()
+             {
+                 var carImage='<img src='+this.imgUrl+' height=100 width=100 />';
+                 this.carElem=$(carImage);
+                 this.carElem.css(
+                     {
+                         position:"absolute",
+                         left:this.x,
+                         top:this.y
+                     }
+                 );
+
+                 $("body").append(this.carElem);
+             };
+            
+                       
+             var move = function(px,direction,c)
+             {
+                 if ( direction==="left")
+                 c.x-=px;
+                 else if(direction==="right")
+                 c.x+=px;
+                 else if(direction==="up")
+                 c.y-=px;
+                 else if(direction==="down")
+                 c.y+=px;
+                 if(c.x>600 || c.x<0)
+                 c.x=0;
+                 if(c.y>600 || c.y<0)
+                 c.y=0;
+                 c.carElem.css(
+                     {
+                         left:c.x,
+                         top:c.y
+                     }
+                 );
+             };
+             
+            var maruti=new Car(10,10,"flower.jpg");
+            var ritz=new Car(200,200,"slim.jpg");
+            var tata=new Car(400,400,"bunch.jpg");
+
+            setInterval(move,15,5,"right",maruti);
+            setInterval(move,15,5,"down",ritz);
+             
+   
+        </script>
+    </body>
+</html>

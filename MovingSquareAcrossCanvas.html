@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> 
+            Welcome
+        </title>
+    </head>
+
+    <script src = "http://code.jquery.com/jquery-2.1.0.js">
+    </script>
+
+    <body>
+    
+        <h1> Practicing Canvass</h1>
+
+        <canvas id = "canvasId" width = 800 height = 800></canvas>
+
+        <script>
+        
+          //defining the size of canvas 
+          const CANVAS_WIDTH = 800;
+          const CANVAS_HEIGHT = 800;
+
+          //defining size of square  
+          const SQUARE_SIZE = 50;
+
+          //getting context element  
+          let canvasElement = document.getElementById("canvasId");
+          let contextElement = canvasElement.getContext("2d");
+        
+          //initializing x coordinate of sqaure to 0
+          let leftPosition = 0;
+
+          //move sqaure for every 3 milliseconds
+          setInterval(moveSquare, 3);
+
+          //moves sqaure by 1 pixel to the right  
+          function moveSquare() {
+          
+            contextElement.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+            contextElement.strokeRect(leftPosition, 0, SQUARE_SIZE, SQUARE_SIZE);
+          
+            leftPosition++;
+
+            //if reached border of canvas,come back to start position
+            if ( leftPosition > CANVAS_WIDTH ) {
+              leftPosition = 0 ;
+            }
+          }
+    
+        </script>
+    </body>
+</html>

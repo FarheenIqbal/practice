@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> 
+            Welcome
+        </title>
+    </head>
+    <script src="http://code.jquery.com/jquery-2.1.0.js">
+    </script>
+    <body>
+       <h1> Practicing Canvass</h1>
+
+        <canvas id="c" width=500 height=500></canvas>
+
+
+
+       <script>
+        
+        var cn=document.getElementById("c");
+        var ctx=cn.getContext("2d");
+        ctx.strokeStyle="Green";
+        ctx.lineWidth=5;
+
+        //quarter circle
+        ctx.beginPath();
+        ctx.arc(10,10,50,0,Math.PI/2,false);
+        ctx.stroke();
+
+        //half circle
+        ctx.beginPath();
+         ctx.arc(100,100,50,0,Math.PI,false);
+         ctx.stroke();
+
+         //3/4th circle
+         ctx.beginPath();
+         ctx.arc(160,160,50,0,3*Math.PI/2,false);
+         ctx.stroke();
+
+        //full circle
+         ctx.beginPath();
+         ctx.arc(250,250,50,0,2*Math.PI,false);
+         ctx.stroke();
+         </script>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> 
+            Welcome
+        </title>
+    </head>
+    <body>
+       <script src="http://code.jquery.com/jquery-2.1.0.js">
+       </script>
+
+       <script>
+        
+         var car
+         {
+             var x=0,
+             var y=0,
+             var imgUrl="";
+
+             function drawCar()
+             {
+                 var carImage='<img src="flower.jpg" height=100 width=100 />';
+                 var carElem=$(carImage);
+                 carElem.css(
+                     {
+                         position:"absolute",
+                         left:this.x,
+                         top:this.y
+                     }
+                 );
+
+                 $("body").append(carElem);
+             }
+
+             Car(x,y,url)
+             {
+             this.x=x;
+             this.y=y;
+             this.imgUrl=url;
+            }
+
+         };
+
+         
+           
+            var maruti=new Car(0,0,"flower.jpg");
+            var ritz=new Car(200,200,"slim.jpg");
+            var tata=new Car(400,400,"bunch.jpg");
+
+            maruti.drawCar();
+            ritz.drawCar();
+            tata.drawCar();
+
+           
+           
+        </script>
+    </body>
+</html>

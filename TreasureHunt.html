@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> 
+            Welcome to Treasure Hunt!
+        </title>
+        <script src="http://code.jquery.com/jquery-2.1.0.js">
+        </script>
+    </head>
+    <body>
+        <h1> Find the hidden treasure in the map by clicking on it: </h1>
+
+        <img src="flower.jpg" width="500"   height="500" />
+
+        <p id="msg"> </p>
+       <script>
+          
+          function getRandomNum(size)
+          {
+              return Math.floor( Math.random()*size);
+          }
+
+          function getDistance(event,target)
+          {
+              var a=event.offsetX-target.x;
+              var b=event.offsetY-target.y;
+              return Math.sqrt((a*a)+(b*b));
+
+          }
+          const width=500,height=500;
+
+          var target = {
+              x : getRandomNum(width),
+              y : getRandomNum(height)
+          };
+
+          var clicks=0;
+          $("img").click(function (event)
+          {
+                clicks++;
+                var dist=getDistance(event,target);
+                if(dist<10)
+                alert("You found it! You used "+clicks+" clicks!");
+                else if(dist<100)
+                $("#msg").text("almost there. Clicks used:"+clicks);
+                else if(dist<200)
+                $("#msg").text("in the middle. Clicks used:"+clicks);
+                else if(dist<300)
+                $("#msg").text("far away. Clicks used:"+clicks);
+          });
+
+            
+        </script>
+    </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> 
+            Welcome to Treasure Hunt!
+        </title>
+        <script src="http://code.jquery.com/jquery-2.1.0.js">
+        </script>
+    </head>
+    <body>
+    
+        <canvas id="c" width=500 height=500></canvas>
+
+       <script>
+            
+        var cn=document.getElementById("c");
+        var ctx=cn.getContext("2d");
+        ctx.lineWidth=5;
+        ctx.strokeStyle="Red";
+          
+          $("#c").mousemove(function (event)
+          {
+                ctx.beginPath();
+                ctx.arc(event.offsetX,event.offsetY,5,0,Math.PI*2,false);
+                ctx.stroke();
+          });
+
+            
+        </script>
+    </body>
+</html>

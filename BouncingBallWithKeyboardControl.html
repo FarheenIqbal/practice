@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> 
+            Welcome
+        </title>
+    </head>
+
+    <script src = "http://code.jquery.com/jquery-2.1.0.js">
+    </script>
+
+    <body>
+    
+        <h1> Practicing Canvass</h1>
+
+        <canvas id = "canvasId" width = 500 height = 500></canvas>
+
+        <script>
+        
+          //defining the size of canvas 
+          const CANVAS_WIDTH = 500;
+          const CANVAS_HEIGHT = 500;
+
+          //defining angles to draw the circle
+          const START_ANGLE = 0;
+          const END_ANGLE = Math.PI * 2;
+          const ANTI_CLKWISE = false;
+
+          //defining ball details
+          const START_X_POS = CANVAS_WIDTH / 2;
+          const START_Y_POS = CANVAS_HEIGHT / 2;
+          const START_X_SPEED = 5;
+          const START_Y_SPEED = 0; 
+          const RADIUS_OF_BALL = 10;
+
+          //defining keyboard codes
+          const keyPressed = { 32 : "stop",
+                               37 : "left",
+                               38 : "up", 
+                               39 : "right", 
+                               40 : "down" 
+                            };
+
+          //getting context element  
+          let canvasElement = document.getElementById("canvasId");
+          let contextElement = canvasElement.getContext("2d");
+        
+          class Ball {
+              constructor(x, y, xSpeed, ySpeed) {
+                  this.x = x;
+                  this.y = y;
+                  this.xSpeed = xSpeed;
+                  this.ySpeed = ySpeed;
+              }
+              draw() {
+                contextElement.beginPath();
+                contextElement.arc(this.x, this.y, RADIUS_OF_BALL, 
+                                    START_ANGLE, END_ANGLE, ANTI_CLKWISE);
+                contextElement.fill();
+              }
+              
+              move() {
+                this.x += this.xSpeed;
+                this.y += this.ySpeed;
+                if( this.x < 0 ) {
+                    this.x= CANVAS_WIDTH;
+                } else if( this.x > CANVAS_WIDTH ) {
+                    this.x = 0;
+                } else if( this.y < 0) {
+                    this.y = CANVAS_HEIGHT;
+                } else if( this.y > CANVAS_HEIGHT ) {
+                    this.y = 0;
+                }
+              }
+
+              setDirection(direction) {
+                 if(direction === "up") {
+                    this.xSpeed = 0;
+                    this.ySpeed = -5;
+                 } else if(direction === "down") {
+                    this.xSpeed = 0;
+                    this.ySpeed = 5;
+                 } else if(direction === "left") {
+                    this.xSpeed = -5;
+                    this.ySpeed = 0;
+                 } if(direction === "right") {
+                    this.xSpeed = 5;
+                    this.ySpeed = 0;
+                 } if(direction === "stop") {
+                    this.xSpeed = 0;
+                    this.ySpeed = 0;
+                 } 
+              }           
+          }
+
+          //create a Ball object
+          let ball=new Ball(START_X_POS, START_Y_POS, START_X_SPEED, START_Y_SPEED);
+
+          //add keydown handler and change direction of ball
+          $("body").keydown( function(event) {
+                ball.setDirection(keyPressed[event.keyCode]);
+          });
+
+          //bounceBall in different position every 3 milliseconds
+          setInterval(bounceBall,30);
+              
+          function bounceBall() {
+            contextElement.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
+            ball.draw();
+            ball.move();
+                        
+            contextElement.strokeRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+          }
+           
+        </script>
+    </body>
+</html>

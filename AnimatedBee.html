@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> 
+            Welcome
+        </title>
+    </head>
+
+    <script src = "http://code.jquery.com/jquery-2.1.0.js">
+    </script>
+
+    <body>
+    
+        <h1> Practicing Canvass</h1>
+
+        <canvas id = "canvasId" width = 500 height = 500></canvas>
+
+        <script>
+        
+          //defining the size of canvas 
+          const CANVAS_WIDTH = 500;
+          const CANVAS_HEIGHT = 500;
+
+          //defining angles to draw the circle
+          const START_ANGLE = 0;
+          const END_ANGLE = Math.PI * 2;
+          const ANTI_CLKWISE = false;
+
+          //getting context element  
+          let canvasElement = document.getElementById("canvasId");
+          let contextElement = canvasElement.getContext("2d");
+        
+          //starting position (x,y) of bee
+          let x = 100;
+          let y = 100;
+
+          //drawBee at different postion every 3 milliseconds
+          setInterval(animateBee,3);
+              
+          function animateBee() {
+            contextElement.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
+            drawBee(x, y);
+            x = update(x);
+            y = update(y);
+            
+            contextElement.strokeRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+          }
+           
+          function drawBee(x, y) {
+            contextElement.lineWidth = 2;
+            contextElement.strokeStyle = "Black";
+            contextElement.fillStyle = "Gold";
+
+            drawCircle(x, y, 8, true);
+            drawCircle(x, y, 8, false);
+            drawCircle(x - 5, y - 11, 5, false);
+            drawCircle(x + 5, y - 11, 5, false);
+            drawCircle(x - 2, y - 1, 2, false);
+            drawCircle(x + 2, y - 1, 2, false);
+          }
+
+          function drawCircle(x, y, radius, fill) {       
+            contextElement.beginPath();
+            contextElement.arc(x, y, radius, START_ANGLE, END_ANGLE, ANTI_CLKWISE);
+
+            if( fill ) {
+                contextElement.fill();
+            } else {
+                contextElement.stroke();
+            }
+          }
+
+          function update(coordinate) {
+            let offset = ( Math.random() * 4 ) - 2;
+            coordinate += offset;
+
+            if( coordinate > CANVAS_WIDTH ) {
+                coordinate = CANVAS_WIDTH;
+            } 
+
+            if( coordinate < 0 ) {
+                coordinate = 0;
+            }
+
+            return coordinate;
+            }
+
+        </script>
+    </body>
+</html>
